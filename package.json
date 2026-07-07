@@ -1,0 +1,29 @@
+{
+  "name": "aerova-drone-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "clean": "rm -rf .next",
+    "build": "npm run clean && next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "framer-motion": "^11.18.2",
+    "lucide-react": "^0.451.0",
+    "next": "^15.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
+    "@types/node": "^20.17.6",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^5.5.4"
+  }
+}

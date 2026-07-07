@@ -1,0 +1,10 @@
+{
+  "build": {
+    "command": "npm run build",
+    "outputDirectory": ".next",
+    "env": {
+      "NODE_VERSION": "24"
+    }
+  },
+  "framework": "nextjs"
+}

@@ -1,0 +1,212 @@
+'use client'
+
+import Link from "next/link"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { motion } from "framer-motion"
+import Reveal from "@/components/Reveal"
+import SectionHeading from "@/components/SectionHeading"
+import { CAPABILITIES, METRICS, SOLUTIONS, PRODUCTS } from "@/lib/content"
+
+export default function HomePage() {
+  return (
+    <>
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 tech-grid opacity-[0.35]" aria-hidden="true" />
+        <div
+          className="absolute -top-40 right-0 h-[480px] w-[480px] rounded-full blur-3xl"
+          style={{ background: "radial-gradient(circle, color-mix(in oklch, var(--color-accent) 22%, transparent), transparent 70%)" }}
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-32 lg:grid-cols-2 lg:gap-8 lg:px-8 lg:pb-28 lg:pt-40">
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs tracking-wide text-muted-foreground"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Industrial-grade aerial systems · Full-stack in-house R&D
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="mt-6 text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            >
+              Turning every flight into
+              <br />
+              trusted <span className="text-accent">aerial productivity</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.12 }}
+              className="mt-6 max-w-xl text-pretty leading-relaxed text-muted-foreground"
+            >
+              AEROVA Unmanned Systems specializes in flight platforms, autonomous sensing and data
+              infrastructure for industrial drones, delivering end-to-end aerial operations — from
+              capture to decision — for energy, surveying, public safety and more.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.18 }}
+              className="mt-9 flex flex-wrap items-center gap-3"
+            >
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+              >
+                Explore products <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+              >
+                Book a demo
+              </Link>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="relative"
+          >
+            <div className="relative overflow-hidden rounded-md border border-border bg-surface/40">
+              <img
+                src="/images/homepage-drone.jpg"
+                alt="AEROVA industrial drone hovering"
+                className="aspect-[2287/1280] w-full object-cover animate-float"
+              />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-accent/10 to-transparent animate-scan" aria-hidden="true" />
+            </div>
+            <div className="absolute -bottom-4 -left-4 hidden rounded-md border border-border bg-background/90 px-4 py-3 backdrop-blur sm:block">
+              <p className="font-mono text-xs text-muted-foreground">Live telemetry</p>
+              <p className="font-mono text-sm text-accent">ALT 142m · SPD 16m/s · GPS 21</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-surface/40">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden lg:grid-cols-4">
+          {METRICS.map((m, i) => (
+            <Reveal key={m.label} delay={i * 0.08} className="bg-surface/40 px-6 py-10 text-center">
+              <p className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                {m.value}
+                <span className="ml-1 text-base font-normal text-accent">{m.unit}</span>
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">{m.label}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Core Capabilities"
+            title="Full-stack engineering for a reliable flight foundation"
+            description="From flight-control algorithms to a closed-loop data pipeline, four capability modules work together to keep flight stable, controllable and deliverable in complex environments."
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-px overflow-hidden border border-border sm:grid-cols-2 lg:grid-cols-4">
+          {CAPABILITIES.map((c, i) => (
+            <Reveal key={c.title} delay={i * 0.08} className="group bg-card p-7 transition-colors hover:bg-surface">
+              <span className="font-mono text-xs text-accent">0{i + 1}</span>
+              <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface/30">
+        <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+              <SectionHeading
+                eyebrow="Products"
+                title="Drones matrix for industrial applications"
+              />
+              <Link href="/products" className="inline-flex items-center gap-2 text-sm text-accent hover:underline">
+                View all products <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {PRODUCTS.map((p, i) => (
+              <Reveal key={p.id} delay={i * 0.1}>
+                <Link
+                  href="/products"
+                  className="group block overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-accent/60"
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-surface">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <p className="font-mono text-xs text-accent">{p.series}</p>
+                    <h3 className="mt-2 text-lg font-medium text-foreground">{p.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.summary}</p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Solutions"
+            title="Aerial digitalization tailored to your industry"
+            align="center"
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {SOLUTIONS.map((s, i) => (
+            <Reveal key={s.id} delay={i * 0.08} className="flex flex-col rounded-md border border-border bg-card p-6">
+              <h3 className="text-base font-medium text-foreground">{s.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+              <Link
+                href="/solutions"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+              >
+                Learn more <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="relative mx-auto max-w-7xl overflow-hidden px-5 py-20 lg:px-8">
+          <div className="absolute inset-0 tech-grid opacity-20" aria-hidden="true" />
+          <Reveal className="relative mx-auto max-w-2xl text-center">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              Let&apos;s tailor an aerial solution for your operations
+            </h2>
+            <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+              Tell us your industry and requirements, and our solutions team will support airframe
+              selection, data-link design and flight-test validation.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+            >
+              Contact us <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  )
+}
