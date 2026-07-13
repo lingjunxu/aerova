@@ -82,7 +82,7 @@ export default function AboutPage() {
           <p className="mt-5 leading-relaxed text-muted-foreground">
             We believe the value of a drone lies not just in flying, but in completing missions
             reliably and delivering data dependably. Around this goal, our team has built a complete
-            technology stack spanning flight control, autonomous sensing, fleet scheduling and data analysis.
+            technology stack spanning flight control, autonomous sensing, swarm cooperation and data analysis.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             From frontline inspection to emergency response, we refine every operational workflow

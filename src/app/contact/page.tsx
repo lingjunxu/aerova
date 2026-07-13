@@ -4,7 +4,9 @@ import { useState, type FormEvent } from "react"
 import { Mail, Phone, MapPin, Check } from "lucide-react"
 import PageHeader from "@/components/PageHeader"
 import Reveal from "@/components/Reveal"
+import StructuredData from "@/components/StructuredData"
 import { BRAND } from "@/lib/site"
+import { createContactPointSchema, createOrganizationSchema } from "@/lib/schema"
 
 const INDUSTRIES = ["Energy & Power", "Surveying & GIS", "Public Safety", "Agriculture & Forestry", "Other"]
 
@@ -18,6 +20,8 @@ export default function ContactPage() {
 
   return (
     <>
+      <StructuredData data={createContactPointSchema()} />
+      <StructuredData data={createOrganizationSchema()} />
       <PageHeader
         eyebrow="Contact"
         title="Start a conversation about aerial operations"

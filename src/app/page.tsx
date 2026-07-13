@@ -1,15 +1,52 @@
 'use client'
 
+import { useRef, useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { motion } from "framer-motion"
 import Reveal from "@/components/Reveal"
 import SectionHeading from "@/components/SectionHeading"
+import StructuredData from "@/components/StructuredData"
 import { CAPABILITIES, METRICS, SOLUTIONS, PRODUCTS } from "@/lib/content"
+import { createOrganizationSchema, createWebSiteSchema } from "@/lib/schema"
 
 export default function HomePage() {
+  const capabilitiesRef = useRef<HTMLDivElement>(null)
+  const [activeSlide, setActiveSlide] = useState(0)
+  const slidesPerPage = 2
+  const totalPages = Math.ceil(CAPABILITIES.length / slidesPerPage)
+
+  const goToSlide = (pageIndex: number) => {
+    const container = capabilitiesRef.current
+    if (!container) return
+    const scrollAmount = container.clientWidth
+    container.scrollTo({
+      left: pageIndex * scrollAmount,
+      behavior: "smooth",
+    })
+    setActiveSlide(pageIndex)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next = (activeSlide + 1) % totalPages
+      goToSlide(next)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [activeSlide, totalPages])
+
+  const handleScroll = () => {
+    const container = capabilitiesRef.current
+    if (!container) return
+    const pageWidth = container.clientWidth
+    const index = Math.round(container.scrollLeft / pageWidth)
+    setActiveSlide(Math.min(index, totalPages - 1))
+  }
+
   return (
     <>
+      <StructuredData data={createOrganizationSchema()} />
+      <StructuredData data={createWebSiteSchema()} />
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 tech-grid opacity-[0.35]" aria-hidden="true" />
         <div
@@ -92,16 +129,21 @@ export default function HomePage() {
       </section>
 
       <section className="border-y border-border bg-surface/40">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden lg:grid-cols-4">
-          {METRICS.map((m, i) => (
-            <Reveal key={m.label} delay={i * 0.08} className="bg-surface/40 px-6 py-10 text-center">
-              <p className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {m.value}
-                <span className="ml-1 text-base font-normal text-accent">{m.unit}</span>
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">{m.label}</p>
-            </Reveal>
-          ))}
+        <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent">
+            Our Advantages
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden lg:grid-cols-4">
+            {METRICS.map((m, i) => (
+              <Reveal key={m.label} delay={i * 0.08} className="bg-surface/40 px-6 py-10 text-center">
+                <p className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                  {m.value}
+                  <span className="ml-1 text-base font-normal text-accent">{m.unit}</span>
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">{m.label}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -113,13 +155,63 @@ export default function HomePage() {
             description="From flight-control algorithms to a closed-loop data pipeline, four capability modules work together to keep flight stable, controllable and deliverable in complex environments."
           />
         </Reveal>
-        <div className="mt-14 grid gap-px overflow-hidden border border-border sm:grid-cols-2 lg:grid-cols-4">
-          {CAPABILITIES.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.08} className="group bg-card p-7 transition-colors hover:bg-surface">
-              <span className="font-mono text-xs text-accent">0{i + 1}</span>
-              <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
-            </Reveal>
+        <div
+          ref={capabilitiesRef}
+          onScroll={handleScroll}
+          className="mt-14 flex snap-x snap-mandatory gap-0 overflow-x-hidden"
+        >
+          <div className="flex w-full shrink-0 snap-center gap-6">
+            {CAPABILITIES.slice(0, 2).map((c, i) => (
+              <div
+                key={c.title}
+                data-card
+                className="group relative h-[520px] w-1/2 shrink-0 overflow-hidden rounded-md border border-border bg-surface"
+              >
+                <img
+                  src={c.image}
+                  alt={c.title}
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-background/80 p-7 backdrop-blur-sm">
+                  <span className="font-mono text-xs text-accent">0{i + 1}</span>
+                  <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex w-full shrink-0 snap-center gap-6">
+            {CAPABILITIES.slice(2, 4).map((c, i) => (
+              <div
+                key={c.title}
+                data-card
+                className="group relative h-[520px] w-1/2 shrink-0 overflow-hidden rounded-md border border-border bg-surface"
+              >
+                <img
+                  src={c.image}
+                  alt={c.title}
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-background/80 p-7 backdrop-blur-sm">
+                  <span className="font-mono text-xs text-accent">0{i + 3}</span>
+                  <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-8 flex items-center justify-center gap-2">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => goToSlide(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                i === activeSlide ? "w-8 bg-accent" : "w-2 bg-border hover:bg-muted-foreground/50"
+              }`}
+            />
           ))}
         </div>
       </section>
@@ -168,19 +260,29 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Solutions"
             title="Aerial digitalization tailored to your industry"
-            align="center"
           />
         </Reveal>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {SOLUTIONS.map((s, i) => (
-            <Reveal key={s.id} delay={i * 0.08} className="flex flex-col rounded-md border border-border bg-card p-6">
-              <h3 className="text-base font-medium text-foreground">{s.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+            <Reveal key={s.id} delay={i * 0.08}>
               <Link
                 href="/solutions"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+                className="group relative flex flex-col overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-accent/60"
               >
-                Learn more <ArrowRight className="h-3.5 w-3.5" />
+                <div className="aspect-[4/3] overflow-hidden bg-surface">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-base font-medium text-foreground">{s.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent hover:underline">
+                    Learn more <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
               </Link>
             </Reveal>
           ))}

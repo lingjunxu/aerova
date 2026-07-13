@@ -49,24 +49,28 @@ export const SOLUTIONS = [
     title: "Energy & Power Inspection",
     desc: "Recurring autonomous inspection of transmission lines, wind turbines and solar arrays, with AI defect detection replacing high-risk manual climbing.",
     points: ["3D corridor modeling", "Infrared thermography", "Automatic defect grading & alerts"],
+    image: "/images/solution-power.jpg",
   },
   {
-    id: "survey",
-    title: "Surveying & Mapping",
+    id: "border",
+    title: "Border Counter Terrorism Patrol",
     desc: "Centimeter-level aerial survey and orthophoto production, rapidly building a wide-area digital twin and shortening field cycles.",
     points: ["RTK survey without GCPs", "Real-scene 3D reconstruction", "DOM / DSM deliverables"],
+    image: "/images/solution-border.jpg",
   },
   {
-    id: "security",
-    title: "Public Safety & Emergency",
+    id: "chemical",
+    title: "Chemical Park Security",
     desc: "Pre-positioned docks enable one-tap launch on incident, delivering a real-time aerial view and on-scene situational awareness.",
     points: ["Second-level response", "Day/night dual-sensor detection", "Live command link relay"],
+    image: "/images/solution-chemical.jpg",
   },
   {
-    id: "agri",
-    title: "Smart Agriculture & Forestry",
+    id: "forest",
+    title: "Forest Fire Suppression",
     desc: "Multispectral remote sensing monitors crop health and forestry resources, supporting precise management decisions through a data platform.",
     points: ["Multispectral health analysis", "Forest resource survey", "Disease zone early warning"],
+    image: "/images/solution-fire.jpg",
   },
 ]
 
@@ -74,24 +78,28 @@ export const CAPABILITIES = [
   {
     title: "Flight Platforms",
     desc: "In-house flight control and redundant propulsion across VTOL, multirotor and other airframes.",
+    image: "/images/flight-platform.jpg",
   },
   {
     title: "Autonomous Sensing",
     desc: "Multi-sensor fusion positioning and omnidirectional obstacle avoidance for stable flight in weak-signal environments.",
+    image: "/images/drone-reconnaissance-smarter1.jpg",
   },
   {
-    title: "Fleet Scheduling",
+    title: "Swarm Cooperation",
     desc: "Docks and cloud scheduling work together to support swarm formations and unattended recurring missions.",
+    image: "/images/swarm-intelligence1.jpg",
   },
   {
     title: "Data Platform",
     desc: "An integrated pipeline from capture to AI analysis, delivering decision-ready industry results.",
+    image: "/images/aboutusdetail.jpg",
   },
 ]
 
 export const METRICS = [
   { value: "240", unit: "min", label: "Longest single-flight endurance" },
-  { value: "32", unit: "states", label: "Project delivery coverage" },
+  { value: "64", unit: "County", label: "Project delivery coverage" },
   { value: "1.2M", unit: "+", label: "Cumulative safe flights" },
   { value: "99.6", unit: "%", label: "Mission success rate" },
 ]

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import StructuredData from "@/components/StructuredData";
+import { createServiceSchema } from "@/lib/schema";
 
 const SOLUTIONS_DETAIL: Record<string, {
   title: string;
@@ -104,7 +106,8 @@ const SOLUTIONS_DETAIL: Record<string, {
 
 export default function SolutionDetailPage() {
   const params = useParams<{ id: string }>();
-  const solution = params.id ? SOLUTIONS_DETAIL[params.id] : null;
+  const solutionId = params.id || "";
+  const solution = SOLUTIONS_DETAIL[solutionId];
 
   if (!solution) {
     return (
@@ -119,8 +122,15 @@ export default function SolutionDetailPage() {
     );
   }
 
+  const serviceSchema = createServiceSchema(
+    solution.title,
+    solutionId,
+    solution.overview
+  );
+
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
+      <StructuredData data={serviceSchema} />
       <div className="bg-surface border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">

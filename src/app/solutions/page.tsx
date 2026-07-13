@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import StructuredData from "@/components/StructuredData";
+import { createItemListSchema } from "@/lib/schema";
 
 const SOLUTIONS = [
   {
@@ -62,8 +64,15 @@ const SOLUTIONS = [
 export default function SolutionPage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
+  const solutionsSchema = createItemListSchema(
+    "AEROVA Drone Solutions",
+    SOLUTIONS.map((s) => ({ url: `/solutions/${s.id}`, name: s.title })),
+    "Comprehensive drone solutions for energy inspection, surveying, public safety, agriculture, and forest fire suppression."
+  );
+
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
+      <StructuredData data={solutionsSchema} />
       <div className="border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 text-center">
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">

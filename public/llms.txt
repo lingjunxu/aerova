@@ -1,0 +1,105 @@
+# AEROVA - Enterprise Drone Solutions
+
+## COMPANY OVERVIEW
+Company Name: AEROVA
+Website: https://www.aerova.cc
+Industry: Unmanned Aerial Vehicle (UAV) / Drone Technology
+Business Focus: Enterprise-grade drone platforms and integrated solutions for industrial inspection, agriculture, public safety, and surveying.
+Core Competencies: Flight control systems, autonomous sensing, fleet scheduling, data analytics platform.
+
+## KEY METRICS
+- Longest single-flight endurance: 240 minutes
+- Project delivery coverage: 64 countries
+- Cumulative safe flights: 1.2 million+
+- Mission success rate: 99.6%
+
+## PRODUCT LINEUP
+
+### 1. Inspection Drones (Long-Endurance Series)
+- Product ID: Inspection
+- Series: Long-Endurance Series
+- Description: Combines vertical take-off with fixed-wing cruise for flexible deployment and extended range, designed specifically for inspection in complex environments.
+- Specifications:
+  - Max Endurance: 60 minutes
+  - Cruise Radius: 10 km
+  - Payload Capacity: 7.8 kg
+  - Wind Resistance: Level 6
+- Primary Applications: Energy infrastructure inspection, transmission line monitoring, wind turbine inspection.
+
+### 2. Agriculture Drones (Heavy-Lift Series)
+- Product ID: Agriculture
+- Series: Heavy-Lift Series
+- Description: High-payload architecture meets extended endurance and raw power, purpose-built to cover more acres, spray more crops, and work longer hours without skipping a beat.
+- Specifications:
+  - Max Payload: 89 kg
+  - Endurance: 60 minutes
+  - Spraying System: Centrifugal Nozzles
+  - Ingress Rating: IP55
+- Primary Applications: Crop spraying, precision agriculture, farm monitoring.
+
+### 3. Industrial Multi-mission Drones (Unattended Series)
+- Product ID: Industrial Multi-mission
+- Series: Unattended Series
+- Description: Engineered with high-load capacity, multi-layered redundancy, and uncompromising stability, powered by a propulsion system built for the toughest industrial missions.
+- Specifications:
+  - Endurance: 60 minutes
+  - Operating Temperature: -20 to 55°C
+  - Deployment Mode: Fixed / Mobile
+  - Wind Resistance: 10 m/s
+- Primary Applications: Industrial facility monitoring, security patrol, multi-sensor data collection.
+
+## SOLUTIONS
+
+### Energy & Power Inspection
+- Solution ID: energy
+- Description: Recurring autonomous inspection of transmission lines, wind turbines and solar arrays, with AI defect detection replacing high-risk manual climbing.
+- Key Features: 3D corridor modeling, Infrared thermography, Automatic defect grading & alerts.
+- Target Industries: Utilities, renewable energy, power generation.
+
+### Surveying & Mapping
+- Solution ID: survey
+- Description: Centimeter-level aerial survey and orthophoto production, rapidly building a wide-area digital twin and shortening field cycles.
+- Key Features: RTK survey without GCPs, Real-scene 3D reconstruction, DOM / DSM deliverables.
+- Target Industries: Land surveying, civil engineering, urban planning.
+
+### Public Safety & Emergency
+- Solution ID: security
+- Description: Pre-positioned docks enable one-tap launch on incident, delivering a real-time aerial view and on-scene situational awareness.
+- Key Features: Second-level response, Day/night dual-sensor detection, Live command link relay.
+- Target Industries: Public safety, emergency response, law enforcement.
+
+### Smart Agriculture & Forestry
+- Solution ID: agri
+- Description: Multispectral remote sensing monitors crop health and forestry resources, supporting precise management decisions through a data platform.
+- Key Features: Multispectral health analysis, Forest resource survey, Disease zone early warning.
+- Target Industries: Agriculture, forestry, environmental monitoring.
+
+## CAPABILITIES
+
+### Flight Platforms
+In-house flight control and redundant propulsion across VTOL, multirotor and other airframes.
+
+### Autonomous Sensing
+Multi-sensor fusion positioning and omnidirectional obstacle avoidance for stable flight in weak-signal environments.
+
+### Fleet Scheduling
+Docks and cloud scheduling work together to support swarm formations and unattended recurring missions.
+
+### Data Platform
+An integrated pipeline from capture to AI analysis, delivering decision-ready industry results.
+
+## CONTACT INFORMATION
+- Contact Page: https://www.aerova.cc/contact
+- About Us: https://www.aerova.cc/about
+
+## SITE NAVIGATION
+- Homepage: /
+- About: /about, /about/detail
+- Products: /products, /products/[id]
+- Solutions: /solutions, /solutions/[id]
+- Contact: /contact
+
+## IMPORTANT FILES
+- Robots.txt: https://www.aerova.cc/robots.txt
+- Sitemap.xml: https://www.aerova.cc/sitemap.xml
+- LLMs.txt: https://www.aerova.cc/llms.txt

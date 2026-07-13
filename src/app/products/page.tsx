@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import StructuredData from "@/components/StructuredData";
+import { createItemListSchema } from "@/lib/schema";
 
 const INSPECTION_DRONES = [
   {
@@ -377,8 +379,16 @@ export default function ProductsPage() {
 
   const products = getProducts();
 
+  const allProducts = [...INSPECTION_DRONES, ...AGRICULTURAL_DRONES, ...CLEANING_DRONES, ...CARGO_DRONES, ...TACTICAL_DRONES, ...RECON_DRONES];
+  const productsSchema = createItemListSchema(
+    "AEROVA Industrial Drone Products",
+    allProducts.map((p) => ({ url: `/products/${p.id}`, name: p.name })),
+    "Comprehensive industrial drone solutions for inspection, agriculture, cleaning, logistics, and reconnaissance applications."
+  );
+
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
+      <StructuredData data={productsSchema} />
       <div className="border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 text-center">
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">

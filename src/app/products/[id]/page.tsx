@@ -3,6 +3,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import StructuredData from "@/components/StructuredData";
+import { createProductSchema } from "@/lib/schema";
+
+interface ProductData {
+  name: string;
+  category: string;
+  description: string;
+  features: string[];
+  specifications: { label: string; value: string }[];
+  images: { url: string; title: string }[];
+}
 
 const PRODUCTS_DATA: Record<string, ProductData> = {
   "350a": {
@@ -683,15 +694,6 @@ const PRODUCTS_DATA: Record<string, ProductData> = {
   }
 };
 
-interface ProductData {
-  name: string;
-  category: string;
-  description: string;
-  features: string[];
-  specifications: { label: string; value: string }[];
-  images: { url: string; title: string }[];
-}
-
 const NAV_ITEMS = [
   { name: "Specifications" }
 ];
@@ -704,8 +706,17 @@ export default function ProductDetailPage() {
   const productKey = params.id?.toLowerCase() || "350b";
   const product = PRODUCTS_DATA[productKey] || PRODUCTS_DATA["350b"];
 
+  const productSchema = createProductSchema(
+    product.name,
+    productKey,
+    product.description,
+    product.category,
+    product.images[0]?.url || ""
+  );
+
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
+      <StructuredData data={productSchema} />
       <div className="border-b border-border bg-card">
         <div className="mx-auto max-w-7xl px-5 py-3 lg:px-8">
           <div className="flex items-center gap-2 text-muted-foreground text-sm">

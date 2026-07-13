@@ -44,7 +44,7 @@ export default function Footer() {
             <ul className="mt-4 flex flex-col gap-3 text-sm text-foreground/80">
               <li>Flight platform R&D</li>
               <li>Autonomous sensing & avoidance</li>
-              <li>Docks & fleet scheduling</li>
+              <li>Swarm cooperation</li>
               <li>Industry data platform</li>
             </ul>
           </div>
