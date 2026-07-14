@@ -64,9 +64,13 @@ export default function NewsDetailPage() {
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground leading-tight mb-6">
             {article.title}
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            {article.summary}
-          </p>
+          <figure className="rounded-lg overflow-hidden border border-border mb-6">
+            <img
+              src={article.image}
+              alt={article.imageAlt}
+              className="w-full h-auto object-contain"
+            />
+          </figure>
         </header>
 
         <section className="border-t border-border pt-10">
