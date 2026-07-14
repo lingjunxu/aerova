@@ -280,3 +280,82 @@ export function createContactPointSchema(): ContactPointSchema {
     availableLanguage: ["English", "Chinese"],
   };
 }
+
+export type AboutPageSchema = {
+  "@context": "https://schema.org";
+  "@type": "AboutPage";
+  name: string;
+  description: string;
+  url: string;
+  mainEntity: {
+    "@type": "Organization";
+    name: string;
+    description: string;
+    url: string;
+    foundingDate?: string;
+  };
+};
+
+export type BreadcrumbListSchema = {
+  "@context": "https://schema.org";
+  "@type": "BreadcrumbList";
+  itemListElement: Array<{
+    "@type": "ListItem";
+    position: number;
+    name: string;
+    item: string;
+  }>;
+};
+
+export function createAboutPageSchema(): AboutPageSchema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About AEROVA",
+    description:
+      "AEROVA Unmanned Systems is a technology company focused on industrial drones, helping customers complete aerial operations more safely and efficiently with autonomous flight platforms and data capabilities.",
+    url: `${BASE_URL}/about`,
+    mainEntity: {
+      "@type": "Organization",
+      name: BRAND.name,
+      description:
+        "AEROVA provides enterprise-grade industrial drone platforms and integrated solutions for energy inspection, surveying, public safety, and agriculture. With 99.6% mission success rate and 1.2M+ safe flights.",
+      url: BASE_URL,
+      foundingDate: "2017",
+    },
+  };
+}
+
+export function createAboutDetailPageSchema(): AboutPageSchema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About AEROVA - More Than a Distributor",
+    description:
+      "AEROVA equips global system integrators, industry end-users, and brand owners with a One-Network Command capability, powered by deep roots in China's drone industrial cluster.",
+    url: `${BASE_URL}/about/detail`,
+    mainEntity: {
+      "@type": "Organization",
+      name: BRAND.name,
+      description:
+        "AEROVA provides enterprise-grade industrial drone platforms and integrated solutions for energy inspection, surveying, public safety, and agriculture. With 99.6% mission success rate and 1.2M+ safe flights.",
+      url: BASE_URL,
+      foundingDate: "2017",
+    },
+  };
+}
+
+export function createBreadcrumbListSchema(
+  items: Array<{ name: string; url: string }>
+): BreadcrumbListSchema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${BASE_URL}${item.url}`,
+    })),
+  };
+}

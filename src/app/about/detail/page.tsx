@@ -4,10 +4,20 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import Reveal from "@/components/Reveal"
 import SectionHeading from "@/components/SectionHeading"
+import StructuredData from "@/components/StructuredData"
+import { createAboutDetailPageSchema, createBreadcrumbListSchema } from "@/lib/schema"
 
 export default function AboutDetailPage() {
+  const breadcrumbSchema = createBreadcrumbListSchema([
+    { name: "Home", url: "/" },
+    { name: "About", url: "/about" },
+    { name: "Detail", url: "/about/detail" },
+  ])
+
   return (
     <>
+      <StructuredData data={createAboutDetailPageSchema()} />
+      <StructuredData data={breadcrumbSchema} />
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 tech-grid opacity-25" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-5 pb-14 pt-32 lg:px-8 lg:pb-20 lg:pt-40">

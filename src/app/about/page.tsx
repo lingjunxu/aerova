@@ -8,6 +8,8 @@ import PageHeader from "@/components/PageHeader"
 import Reveal from "@/components/Reveal"
 import SectionHeading from "@/components/SectionHeading"
 import { METRICS } from "@/lib/content"
+import StructuredData from "@/components/StructuredData"
+import { createAboutPageSchema } from "@/lib/schema"
 
 const VALUES = [
   { icon: Target, title: "Pragmatic Engineering", desc: "Driven by deliverable outcomes rather than spec sheets — technology that genuinely serves the field." },
@@ -64,6 +66,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <StructuredData data={createAboutPageSchema()} />
       <PageHeader
         eyebrow="About Us"
         title="Connecting the physical world to digital decisions through trusted flight"
