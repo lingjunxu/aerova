@@ -73,9 +73,9 @@ export default function AboutPage() {
 
       <section className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 lg:grid-cols-2 lg:px-8">
         <Reveal>
-          <div className="overflow-hidden rounded-md border border-border">
+          <figure className="overflow-hidden rounded-md border border-border">
             <img src="/images/facility.png" alt="AEROVA R&D and manufacturing facility" className="w-full object-cover" />
-          </div>
+          </figure>
         </Reveal>
         <Reveal delay={0.1}>
           <SectionHeading eyebrow="Who We Are" title="Turning complex flight into a single, simple mission" />
@@ -159,24 +159,24 @@ export default function AboutPage() {
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="grid grid-cols-1 gap-6 lg:grid-cols-2"
                 >
-                  <div className="flex flex-col rounded-md border border-border bg-card p-8">
+                  <article className="flex flex-col rounded-md border border-border bg-card p-8">
                     <Quote className="h-8 w-8 text-accent" />
-                    <p className="mt-5 flex-1 leading-relaxed text-foreground/85">
+                    <blockquote className="mt-5 flex-1 leading-relaxed text-foreground/85">
                       {TESTIMONIALS[activeTestimonial].quote}
-                    </p>
-                    <p className="mt-6 text-sm font-medium text-accent">
+                    </blockquote>
+                    <cite className="mt-6 text-sm font-medium text-accent not-italic">
                       – {TESTIMONIALS[activeTestimonial].author}
-                    </p>
-                  </div>
-                  <div className="hidden lg:flex flex-col rounded-md border border-border bg-card p-8">
+                    </cite>
+                  </article>
+                  <article className="hidden lg:flex flex-col rounded-md border border-border bg-card p-8">
                     <Quote className="h-8 w-8 text-accent" />
-                    <p className="mt-5 flex-1 leading-relaxed text-foreground/85">
+                    <blockquote className="mt-5 flex-1 leading-relaxed text-foreground/85">
                       {TESTIMONIALS[(activeTestimonial + 1) % TESTIMONIALS.length].quote}
-                    </p>
-                    <p className="mt-6 text-sm font-medium text-accent">
+                    </blockquote>
+                    <cite className="mt-6 text-sm font-medium text-accent not-italic">
                       – {TESTIMONIALS[(activeTestimonial + 1) % TESTIMONIALS.length].author}
-                    </p>
-                  </div>
+                    </cite>
+                  </article>
                 </motion.div>
               </AnimatePresence>
             </div>

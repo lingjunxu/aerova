@@ -73,7 +73,7 @@ export default function SolutionPage() {
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
       <StructuredData data={solutionsSchema} />
-      <div className="border-b border-border bg-surface">
+      <header className="border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 text-center">
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
             Solution
@@ -82,19 +82,19 @@ export default function SolutionPage() {
             Committed to providing high-performance intelligent unmanned system solutions.
           </p>
         </div>
-      </div>
+      </header>
 
       <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
         <div className="grid gap-8">
           {SOLUTIONS.map((solution) => (
-            <div
+            <article
               key={solution.id}
               className="bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-all duration-300"
               onMouseEnter={() => setHoveredId(solution.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
               <div className="flex flex-col lg:flex-row">
-                <div className="w-full lg:w-96 h-64 lg:h-80 bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
+                <figure className="w-full lg:w-96 h-64 lg:h-80 bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
                   <img
                     src={solution.image}
                     alt={solution.title}
@@ -119,7 +119,7 @@ export default function SolutionPage() {
                       />
                     </svg>
                   </div>
-                </div>
+                </figure>
 
                 <div className="flex-grow p-6 lg:p-8 flex flex-col justify-center">
                   <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-4">
@@ -129,16 +129,16 @@ export default function SolutionPage() {
                     {solution.description}
                   </p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
                     {solution.features.map((feature, index) => (
-                      <div key={index} className="flex items-start gap-2 text-foreground/80 text-sm">
+                      <li key={index} className="flex items-start gap-2 text-foreground/80 text-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-1.5"></span>
                         <span>{feature}</span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
 
-                  <div className="flex flex-wrap items-center gap-4">
+                  <nav className="flex flex-wrap items-center gap-4">
                     <Link
                       href={`/solutions/${solution.id}`}
                       className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-2.5 rounded font-medium text-sm hover:opacity-90 transition-opacity"
@@ -154,27 +154,29 @@ export default function SolutionPage() {
                     >
                       Contact Us
                     </Link>
-                  </div>
+                  </nav>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        <div className="mt-16 text-center bg-card rounded-lg p-10 border border-border">
+        <aside className="mt-16 text-center bg-card rounded-lg p-10 border border-border">
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             Need a Custom Solution?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Contact our team to discuss your specific requirements and find the perfect drone solution for your industry.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
-          >
-            Get in Touch
-          </Link>
-        </div>
+          <nav>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
+            >
+              Get in Touch
+            </Link>
+          </nav>
+        </aside>
       </div>
     </div>
   );

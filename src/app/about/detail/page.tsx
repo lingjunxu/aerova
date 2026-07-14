@@ -34,7 +34,7 @@ export default function AboutDetailPage() {
                 More Than a Distributor – Your Drone Business Industrial Backend Engine
               </motion.h1>
             </motion.div>
-            <motion.div
+            <motion.figure
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -45,7 +45,7 @@ export default function AboutDetailPage() {
                 alt="AEROVA Industrial Backend"
                 className="w-full h-auto object-cover"
               />
-            </motion.div>
+            </motion.figure>
           </div>
         </div>
       </section>

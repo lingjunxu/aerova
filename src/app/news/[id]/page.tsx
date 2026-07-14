@@ -42,15 +42,17 @@ export default function NewsDetailPage() {
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
       {articleSchema && <StructuredData data={articleSchema} />}
-      <div className="border-b border-border bg-card">
+      <nav className="border-b border-border bg-card" aria-label="Breadcrumb">
         <div className="mx-auto max-w-7xl px-5 py-3 lg:px-8">
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <Link href="/news" className="hover:text-accent transition-colors">News</Link>
-            <span>&gt;</span>
-            <span className="text-foreground/80 truncate">{article.title}</span>
-          </div>
+          <ol className="flex items-center gap-2 text-muted-foreground text-sm">
+            <li>
+              <Link href="/news" className="hover:text-accent transition-colors">News</Link>
+            </li>
+            <li>&gt;</li>
+            <li className="text-foreground/80 truncate">{article.title}</li>
+          </ol>
         </div>
-      </div>
+      </nav>
 
       <article className="mx-auto max-w-4xl px-5 py-12 lg:px-8">
         <header className="mb-10">
@@ -67,7 +69,7 @@ export default function NewsDetailPage() {
           </p>
         </header>
 
-        <div className="border-t border-border pt-10">
+        <section className="border-t border-border pt-10">
           <div className="prose prose-slate max-w-none">
             {paragraphs.map((paragraph, index) => (
               <div key={index} className="mb-6">
@@ -89,9 +91,9 @@ export default function NewsDetailPage() {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="mt-16 pt-8 border-t border-border">
+        <nav className="mt-16 pt-8 border-t border-border" aria-label="Article navigation">
           <div className="flex flex-col sm:flex-row justify-between gap-6">
             {prevArticle ? (
               <Link
@@ -130,9 +132,9 @@ export default function NewsDetailPage() {
               <div className="flex-1"></div>
             )}
           </div>
-        </div>
+        </nav>
 
-        <div className="mt-12 text-center">
+        <nav className="mt-12 text-center" aria-label="News navigation">
           <Link
             href="/news"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm"
@@ -142,22 +144,24 @@ export default function NewsDetailPage() {
             </svg>
             Back to all news
           </Link>
-        </div>
+        </nav>
 
-        <div className="mt-16 text-center bg-card rounded-lg p-10 border border-border">
+        <aside className="mt-16 text-center bg-card rounded-lg p-10 border border-border">
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             Interested in learning more?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Contact our team to discuss how our drone solutions can address your industry challenges.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
-          >
-            Get in Touch
-          </Link>
-        </div>
+          <nav>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
+            >
+              Get in Touch
+            </Link>
+          </nav>
+        </aside>
       </article>
     </div>
   );

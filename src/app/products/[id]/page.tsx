@@ -717,72 +717,75 @@ export default function ProductDetailPage() {
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
       <StructuredData data={productSchema} />
-      <div className="border-b border-border bg-card">
+      <nav className="border-b border-border bg-card" aria-label="Breadcrumb">
         <div className="mx-auto max-w-7xl px-5 py-3 lg:px-8">
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <Link href="/products" className="hover:text-accent transition-colors">Products</Link>
-            <span>&gt;</span>
-            <span className="text-foreground/80">{product.name}</span>
-          </div>
+          <ol className="flex items-center gap-2 text-muted-foreground text-sm">
+            <li>
+              <Link href="/products" className="hover:text-accent transition-colors">Products</Link>
+            </li>
+            <li>&gt;</li>
+            <li className="text-foreground/80">{product.name}</li>
+          </ol>
         </div>
-      </div>
+      </nav>
 
       <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
         <div className="flex gap-8 lg:gap-12">
           <div className="w-full lg:w-1/2">
-            <div className="relative bg-card rounded-lg overflow-hidden">
+            <figure className="relative bg-card rounded-lg overflow-hidden h-[500px]">
               <img
                 src={product.images[activeImage].url}
                 alt={product.images[activeImage].title}
-                className="w-full h-80 lg:h-96 object-cover"
+                className="w-full h-full object-cover"
               />
-              <div className="absolute bottom-4 right-4 bg-black/50 px-3 py-1 rounded text-foreground text-xs">
+              <figcaption className="absolute bottom-4 right-4 bg-black/50 px-3 py-1 rounded text-foreground text-xs">
                 {product.images[activeImage].title}
-              </div>
-            </div>
+              </figcaption>
+            </figure>
 
-            <div className="flex gap-3 mt-4">
+            <nav className="flex gap-3 mt-4" aria-label="Product image thumbnails">
               {product.images.map((img: { url: string; title: string }, index: number) => (
                 <button
                   key={index}
                   onClick={() => setActiveImage(index)}
-                  className={`w-20 h-16 rounded overflow-hidden border-2 transition-colors ${
+                  className={`w-24 h-20 rounded overflow-hidden border-2 transition-colors bg-card ${
                     activeImage === index ? "border-accent" : "border-transparent opacity-60 hover:opacity-100"
                   }`}
+                  aria-label={`View ${img.title}`}
                 >
-                  <img src={img.url} alt={img.title} className="w-full h-full object-cover" />
+                  <img src={img.url} alt={img.title} className="w-full h-full object-contain" />
                 </button>
               ))}
-            </div>
+            </nav>
           </div>
 
           <div className="w-full lg:w-1/2">
-            <div className="mb-6">
+            <header className="mb-6">
               <span className="text-accent text-xs font-mono uppercase tracking-wider">
                 {product.category}
               </span>
               <h1 className="mt-2 text-3xl lg:text-4xl font-bold text-foreground">
                 {product.name}
               </h1>
-            </div>
+            </header>
 
             <p className="text-muted-foreground leading-relaxed mb-8">
               {product.description}
             </p>
 
-            <div className="mb-8">
+            <section className="mb-8">
               <h3 className="text-foreground font-semibold mb-4">Key Features</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {product.features.map((feature: string, index: number) => (
-                  <div key={index} className="flex items-center gap-3 text-foreground/80 text-sm">
+                  <li key={index} className="flex items-center gap-3 text-foreground/80 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
                     {feature}
-                  </div>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </section>
 
-            <div className="flex gap-4">
+            <nav className="flex gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded font-medium text-sm hover:opacity-90 transition-opacity"
@@ -795,12 +798,12 @@ export default function ProductDetailPage() {
               >
                 Contact Sales
               </Link>
-            </div>
+            </nav>
           </div>
         </div>
 
-        <div className="mt-16">
-          <div className="flex border-b border-border mb-8">
+        <section className="mt-16">
+          <nav className="flex border-b border-border mb-8" aria-label="Product tabs">
             {NAV_ITEMS.map((item, index) => (
               <button
                 key={index}
@@ -814,7 +817,7 @@ export default function ProductDetailPage() {
                 {item.name}
               </button>
             ))}
-          </div>
+          </nav>
 
           <div className="bg-card rounded-lg overflow-hidden">
             <table className="w-full">
@@ -833,22 +836,24 @@ export default function ProductDetailPage() {
               </tbody>
             </table>
           </div>
-        </div>
+        </section>
 
-        <div className="mt-16 text-center">
+        <aside className="mt-16 text-center">
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             Interested in the {product.name}?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Contact our sales team to learn more about specifications, pricing and availability.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
-          >
-            Request a Demo
-          </Link>
-        </div>
+          <nav>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
+            >
+              Request a Demo
+            </Link>
+          </nav>
+        </aside>
       </div>
     </div>
   );

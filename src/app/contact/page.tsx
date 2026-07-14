@@ -34,8 +34,8 @@ export default function ContactPage() {
           <p className="mt-3 leading-relaxed text-muted-foreground">
             Reach us through any of the channels below, or simply fill out the form.
           </p>
-          <ul className="mt-8 flex flex-col gap-5">
-            <li className="flex items-start gap-3.5">
+          <address className="mt-8 flex flex-col gap-5 not-italic">
+            <div className="flex items-start gap-3.5">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-border text-accent">
                 <Mail className="h-4 w-4" />
               </span>
@@ -43,8 +43,8 @@ export default function ContactPage() {
                 <p className="text-xs text-muted-foreground">Email</p>
                 <p className="mt-0.5 text-foreground">{BRAND.email}</p>
               </div>
-            </li>
-            <li className="flex items-start gap-3.5">
+            </div>
+            <div className="flex items-start gap-3.5">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-border text-accent">
                 <Phone className="h-4 w-4" />
               </span>
@@ -52,8 +52,8 @@ export default function ContactPage() {
                 <p className="text-xs text-muted-foreground">Phone</p>
                 <p className="mt-0.5 text-foreground">{BRAND.phone}</p>
               </div>
-            </li>
-            <li className="flex items-start gap-3.5">
+            </div>
+            <div className="flex items-start gap-3.5">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-border text-accent">
                 <MapPin className="h-4 w-4" />
               </span>
@@ -61,14 +61,14 @@ export default function ContactPage() {
                 <p className="text-xs text-muted-foreground">Address</p>
                 <p className="mt-0.5 text-foreground">{BRAND.address}</p>
               </div>
-            </li>
-          </ul>
+            </div>
+          </address>
         </Reveal>
 
         <Reveal delay={0.1} className="lg:col-span-3">
           <div className="rounded-md border border-border bg-card p-7 sm:p-9">
             {submitted ? (
-              <div className="flex flex-col items-center justify-center py-16 text-center">
+              <article className="flex flex-col items-center justify-center py-16 text-center">
                 <span className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-accent text-accent">
                   <Check className="h-6 w-6" />
                 </span>
@@ -83,7 +83,7 @@ export default function ContactPage() {
                 >
                   Submit another
                 </button>
-              </div>
+              </article>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="grid gap-5 sm:grid-cols-2">

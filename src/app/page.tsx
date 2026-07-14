@@ -55,7 +55,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-32 lg:grid-cols-2 lg:gap-8 lg:px-8 lg:pb-28 lg:pt-40">
-          <div>
+          <header>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function HomePage() {
               infrastructure for industrial drones, delivering end-to-end aerial operations — from
               capture to decision — for energy, surveying, public safety and more.
             </motion.p>
-            <motion.div
+            <motion.nav
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.18 }}
@@ -103,66 +103,68 @@ export default function HomePage() {
               >
                 Book a demo
               </Link>
-            </motion.div>
-          </div>
+            </motion.nav>
+          </header>
 
-          <motion.div
+          <motion.figure
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="relative"
+            className="relative overflow-hidden rounded-md border border-border bg-surface/40"
           >
-            <div className="relative overflow-hidden rounded-md border border-border bg-surface/40">
-              <img
-                src="/images/homepage-drone.jpg"
-                alt="AEROVA industrial drone hovering"
-                className="aspect-[2287/1280] w-full object-cover animate-float"
-              />
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-accent/10 to-transparent animate-scan" aria-hidden="true" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 hidden rounded-md border border-border bg-background/90 px-4 py-3 backdrop-blur sm:block">
+            <img
+              src="/images/homepage-drone.jpg"
+              alt="AEROVA industrial drone hovering"
+              className="aspect-[2287/1280] w-full object-cover animate-float"
+            />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-accent/10 to-transparent animate-scan" aria-hidden="true" />
+            <aside className="absolute -bottom-4 -left-4 hidden rounded-md border border-border bg-background/90 px-4 py-3 backdrop-blur sm:block">
               <p className="font-mono text-xs text-muted-foreground">Live telemetry</p>
               <p className="font-mono text-sm text-accent">ALT 142m · SPD 16m/s · GPS 21</p>
-            </div>
-          </motion.div>
+            </aside>
+          </motion.figure>
         </div>
       </section>
 
       <section className="border-y border-border bg-surface/40">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent">
-            Our Advantages
-          </p>
-          <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden lg:grid-cols-4">
+          <header>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent">
+              Our Advantages
+            </p>
+          </header>
+          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden lg:grid-cols-4">
             {METRICS.map((m, i) => (
               <Reveal key={m.label} delay={i * 0.08} className="bg-surface/40 px-6 py-10 text-center">
-                <p className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                <dt className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                   {m.value}
                   <span className="ml-1 text-base font-normal text-accent">{m.unit}</span>
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">{m.label}</p>
+                </dt>
+                <dd className="mt-2 text-sm text-muted-foreground">{m.label}</dd>
               </Reveal>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Core Capabilities"
-            title="Full-stack engineering for a reliable flight foundation"
-            description="From flight-control algorithms to a closed-loop data pipeline, four capability modules work together to keep flight stable, controllable and deliverable in complex environments."
-          />
-        </Reveal>
+        <header>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Core Capabilities"
+              title="Full-stack engineering for a reliable flight foundation"
+              description="From flight-control algorithms to a closed-loop data pipeline, four capability modules work together to keep flight stable, controllable and deliverable in complex environments."
+            />
+          </Reveal>
+        </header>
         <div
           ref={capabilitiesRef}
           onScroll={handleScroll}
           className="mt-14 flex snap-x snap-mandatory gap-0 overflow-x-hidden"
         >
-          <div className="flex w-full shrink-0 snap-center gap-6">
+          <section className="flex w-full shrink-0 snap-center gap-6">
             {CAPABILITIES.slice(0, 2).map((c, i) => (
-              <div
+              <article
                 key={c.title}
                 data-card
                 className="group relative h-[520px] w-1/2 shrink-0 overflow-hidden rounded-md border border-border bg-surface"
@@ -177,12 +179,12 @@ export default function HomePage() {
                   <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
                 </div>
-              </div>
+              </article>
             ))}
-          </div>
-          <div className="flex w-full shrink-0 snap-center gap-6">
+          </section>
+          <section className="flex w-full shrink-0 snap-center gap-6">
             {CAPABILITIES.slice(2, 4).map((c, i) => (
-              <div
+              <article
                 key={c.title}
                 data-card
                 className="group relative h-[520px] w-1/2 shrink-0 overflow-hidden rounded-md border border-border bg-surface"
@@ -197,11 +199,11 @@ export default function HomePage() {
                   <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
                 </div>
-              </div>
+              </article>
             ))}
-          </div>
+          </section>
         </div>
-        <div className="mt-8 flex items-center justify-center gap-2">
+        <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Carousel navigation">
           {Array.from({ length: totalPages }).map((_, i) => (
             <button
               key={i}
@@ -213,42 +215,46 @@ export default function HomePage() {
               }`}
             />
           ))}
-        </div>
+        </nav>
       </section>
 
       <section className="border-t border-border bg-surface/30">
         <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-          <Reveal>
-            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-              <SectionHeading
-                eyebrow="Products"
-                title="Drones matrix for industrial applications"
-              />
-              <Link href="/products" className="inline-flex items-center gap-2 text-sm text-accent hover:underline">
-                View all products <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </Reveal>
+          <header>
+            <Reveal>
+              <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+                <SectionHeading
+                  eyebrow="Products"
+                  title="Drones matrix for industrial applications"
+                />
+                <Link href="/products" className="inline-flex items-center gap-2 text-sm text-accent hover:underline">
+                  View all products <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </Reveal>
+          </header>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {PRODUCTS.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
-                <Link
-                  href="/products"
-                  className="group block overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-accent/60"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-surface">
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <p className="font-mono text-xs text-accent">{p.series}</p>
-                    <h3 className="mt-2 text-lg font-medium text-foreground">{p.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.summary}</p>
-                  </div>
-                </Link>
+                <article>
+                  <Link
+                    href="/products"
+                    className="group block overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-accent/60"
+                  >
+                    <figure className="aspect-[4/3] overflow-hidden bg-surface">
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </figure>
+                    <div className="p-6">
+                      <p className="font-mono text-xs text-accent">{p.series}</p>
+                      <h3 className="mt-2 text-lg font-medium text-foreground">{p.name}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.summary}</p>
+                    </div>
+                  </Link>
+                </article>
               </Reveal>
             ))}
           </div>
@@ -256,34 +262,38 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Solutions"
-            title="Aerial digitalization tailored to your industry"
-          />
-        </Reveal>
+        <header>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Solutions"
+              title="Aerial digitalization tailored to your industry"
+            />
+          </Reveal>
+        </header>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {SOLUTIONS.map((s, i) => (
             <Reveal key={s.id} delay={i * 0.08}>
-              <Link
-                href="/solutions"
-                className="group relative flex flex-col overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-accent/60"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-surface">
-                  <img
-                    src={s.image}
-                    alt={s.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-base font-medium text-foreground">{s.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent hover:underline">
-                    Learn more <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </div>
-              </Link>
+              <article>
+                <Link
+                  href="/solutions"
+                  className="group relative flex flex-col overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-accent/60"
+                >
+                  <figure className="aspect-[4/3] overflow-hidden bg-surface">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </figure>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-base font-medium text-foreground">{s.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent hover:underline">
+                      Learn more <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                </Link>
+              </article>
             </Reveal>
           ))}
         </div>
@@ -292,7 +302,7 @@ export default function HomePage() {
       <section className="border-t border-border">
         <div className="relative mx-auto max-w-7xl overflow-hidden px-5 py-20 lg:px-8">
           <div className="absolute inset-0 tech-grid opacity-20" aria-hidden="true" />
-          <Reveal className="relative mx-auto max-w-2xl text-center">
+          <aside className="relative mx-auto max-w-2xl text-center">
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               Let&apos;s tailor an aerial solution for your operations
             </h2>
@@ -300,13 +310,15 @@ export default function HomePage() {
               Tell us your industry and requirements, and our solutions team will support airframe
               selection, data-link design and flight-test validation.
             </p>
-            <Link
-              href="/contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-            >
-              Contact us <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
+            <nav>
+              <Link
+                href="/contact"
+                className="mt-8 inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+              >
+                Contact us <ArrowRight className="h-4 w-4" />
+              </Link>
+            </nav>
+          </aside>
         </div>
       </section>
     </>

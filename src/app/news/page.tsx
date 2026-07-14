@@ -51,7 +51,7 @@ export default function NewsPage() {
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
       <StructuredData data={newsSchema} />
-      <div className="border-b border-border bg-surface relative bg-[url('/images/drone_news.jpg')] bg-cover bg-center min-h-[300px] md:min-h-[600px]">
+      <header className="border-b border-border bg-surface relative bg-[url('/images/drone_news.jpg')] bg-cover bg-center min-h-[300px] md:min-h-[600px]">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 text-center">
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
             Industry News
@@ -60,18 +60,19 @@ export default function NewsPage() {
             Insights and analysis on the latest developments in drone technology, low-altitude economy, and industrial applications.
           </p>
         </div>
-      </div>
+      </header>
 
       <div className="border-b border-border bg-card">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="py-4 flex items-center gap-4">
             <div className="relative flex-1 max-w-md">
               <input
-                type="text"
+                type="search"
                 placeholder="Search articles/keywords..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full px-4 py-2 bg-background border border-border rounded text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent"
+                aria-label="Search news articles"
               />
             </div>
             <span className="text-sm text-muted-foreground">
@@ -84,38 +85,39 @@ export default function NewsPage() {
       <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {displayedNews.map((article) => (
-            <Link
-              key={article.id}
-              href={`/news/${article.id}`}
-              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-all hover:shadow-lg hover:-translate-y-1"
-            >
-              <div className="aspect-video relative overflow-hidden">
-                <img
-                  src={article.image}
-                  alt={article.imageAlt}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-3 line-clamp-2 group-hover:text-accent transition-colors">
-                  {article.title}
-                </h3>
-                <p className="text-muted-foreground text-sm line-clamp-4 leading-relaxed">
-                  {article.summary}
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-accent text-sm font-medium">
-                  Read More
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+            <article key={article.id}>
+              <Link
+                href={`/news/${article.id}`}
+                className="group bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-all hover:shadow-lg hover:-translate-y-1 block"
+              >
+                <figure className="aspect-video relative overflow-hidden">
+                  <img
+                    src={article.image}
+                    alt={article.imageAlt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </figure>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                    {article.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm line-clamp-4 leading-relaxed">
+                    {article.summary}
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-accent text-sm font-medium">
+                    Read More
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </article>
           ))}
         </div>
 
         {totalPages > 1 && (
-          <div className="mt-10 flex items-center justify-center gap-2">
+          <nav className="mt-10 flex items-center justify-center gap-2" aria-label="News pagination">
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
@@ -141,6 +143,7 @@ export default function NewsPage() {
                       ? "bg-accent text-accent-foreground border-accent"
                       : "border-border text-foreground hover:border-accent hover:text-accent"
                   }`}
+                  aria-label={`Go to page ${page}`}
                 >
                   {page}
                 </button>
@@ -157,7 +160,7 @@ export default function NewsPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
-          </div>
+          </nav>
         )}
 
         {displayedNews.length === 0 && (
@@ -167,20 +170,22 @@ export default function NewsPage() {
         )}
 
 
-        <div className="mt-16 text-center">
+        <aside className="mt-16 text-center">
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             Stay Updated
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Subscribe to our newsletter for the latest industry insights and product announcements.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
-          >
-            Contact Us
-          </Link>
-        </div>
+          <nav>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
+            >
+              Contact Us
+            </Link>
+          </nav>
+        </aside>
       </div>
     </div>
   );

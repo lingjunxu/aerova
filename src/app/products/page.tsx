@@ -389,7 +389,7 @@ export default function ProductsPage() {
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
       <StructuredData data={productsSchema} />
-      <div className="border-b border-border bg-surface">
+      <header className="border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 text-center">
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
             Industry Solutions
@@ -398,9 +398,9 @@ export default function ProductsPage() {
             Comprehensive drone solutions for various industries including agriculture, industrial multi-mission, logistics, and security applications.
           </p>
         </div>
-      </div>
+      </header>
 
-      <div className="border-b border-border bg-card">
+      <nav className="border-b border-border bg-card" aria-label="Product categories">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="flex flex-wrap gap-2 py-4">
             {CATEGORIES.map((cat) => (
@@ -418,12 +418,12 @@ export default function ProductsPage() {
             ))}
           </div>
         </div>
-      </div>
+      </nav>
 
       <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
         <div className="grid gap-6">
           {products.map((product) => (
-            <div
+            <article
               key={product.id}
               className="bg-card rounded-lg overflow-hidden border border-border"
             >
@@ -432,13 +432,13 @@ export default function ProductsPage() {
                 onClick={() => setExpandedProduct(expandedProduct === product.id ? null : product.id)}
               >
                 <div className="flex flex-col lg:flex-row gap-6">
-                  <div className="w-full lg:w-48 h-32 bg-muted rounded-lg flex items-center justify-center flex-shrink-0">
+                  <figure className="w-full lg:w-56 h-40 bg-muted rounded-lg overflow-hidden flex-shrink-0">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-32 h-24 object-contain"
+                      className="w-full h-full object-cover"
                     />
-                  </div>
+                  </figure>
 
                   <div className="flex-grow">
                     <h3 className="text-xl font-semibold text-foreground mb-2">
@@ -454,6 +454,7 @@ export default function ProductsPage() {
                       className={`w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-accent hover:text-accent transition-colors ${
                         expandedProduct === product.id ? "rotate-180" : ""
                       }`}
+                      aria-label={expandedProduct === product.id ? "Collapse details" : "Expand details"}
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -464,17 +465,17 @@ export default function ProductsPage() {
               </div>
 
               {expandedProduct === product.id && (
-                <div className="border-t border-border p-6 bg-surface/50">
+                <section className="border-t border-border p-6 bg-surface/50">
                   <h4 className="text-foreground font-semibold mb-4">Key Specifications</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {product.specs.map((spec, index) => (
                       <div key={index} className="bg-card p-4 rounded">
-                        <div className="text-muted-foreground/70 text-xs mb-1">{spec.label}</div>
-                        <div className="text-foreground font-medium">{spec.value}</div>
+                        <dt className="text-muted-foreground/70 text-xs mb-1">{spec.label}</dt>
+                        <dd className="text-foreground font-medium">{spec.value}</dd>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 flex gap-4">
+                  <nav className="mt-6 flex gap-4">
                     <Link
                       href={`/products/${product.id}`}
                       className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded font-medium text-sm hover:opacity-90 transition-opacity"
@@ -487,27 +488,29 @@ export default function ProductsPage() {
                     >
                       Get Quote
                     </Link>
-                  </div>
-                </div>
+                  </nav>
+                </section>
               )}
-            </div>
+            </article>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <aside className="mt-16 text-center">
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             Need a Custom Solution?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Contact our team to discuss your specific requirements and find the perfect drone solution for your industry.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
-          >
-            Contact Us
-          </Link>
-        </div>
+          <nav>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
+            >
+              Contact Us
+            </Link>
+          </nav>
+        </aside>
       </div>
     </div>
   );

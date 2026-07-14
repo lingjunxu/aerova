@@ -131,17 +131,19 @@ export default function SolutionDetailPage() {
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
       <StructuredData data={serviceSchema} />
-      <div className="bg-surface border-b border-border">
+      <nav className="bg-surface border-b border-border" aria-label="Breadcrumb">
         <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/solutions" className="hover:text-accent transition-colors">Solutions</Link>
-            <span>/</span>
-            <span className="text-foreground">{solution.title}</span>
-          </div>
+          <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+            <li>
+              <Link href="/solutions" className="hover:text-accent transition-colors">Solutions</Link>
+            </li>
+            <li>/</li>
+            <li className="text-foreground">{solution.title}</li>
+          </ol>
         </div>
-      </div>
+      </nav>
 
-      <div className="bg-surface border-b border-border">
+      <header className="bg-surface border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:flex lg:items-center lg:gap-12">
           <div className="flex-grow">
             <p className="text-accent text-sm font-medium mb-2">{solution.subtitle}</p>
@@ -149,85 +151,90 @@ export default function SolutionDetailPage() {
             <p className="text-muted-foreground max-w-3xl leading-relaxed">{solution.overview}</p>
           </div>
           <div className="mt-6 lg:mt-0 lg:w-96 flex-shrink-0">
-            <img
-              src={solution.image}
-              alt={solution.title}
-              className="w-full h-64 object-cover rounded-lg"
-            />
+            <figure>
+              <img
+                src={solution.image}
+                alt={solution.title}
+                className="w-full h-64 object-cover rounded-lg"
+              />
+            </figure>
           </div>
         </div>
-      </div>
+      </header>
 
       <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12">
-          <div>
+          <section>
             <h2 className="text-2xl font-bold text-foreground mb-6">Business Pain Points</h2>
             <div className="space-y-4">
               {solution.painPoints.map((point, index) => (
-                <div key={index} className="bg-card rounded-lg p-6 border border-border">
+                <article key={index} className="bg-card rounded-lg p-6 border border-border">
                   <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-red-500"></span>
                     {point.title}
                   </h3>
                   <p className="text-muted-foreground text-sm">{point.description}</p>
-                </div>
+                </article>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div>
+          <section>
             <h2 className="text-2xl font-bold text-foreground mb-6">Business Value</h2>
             <div className="space-y-4">
               {solution.businessValue.map((value, index) => (
-                <div key={index} className="bg-card rounded-lg p-6 border border-border hover:border-accent/50 transition-colors">
+                <article key={index} className="bg-card rounded-lg p-6 border border-border hover:border-accent/50 transition-colors">
                   <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-accent"></span>
                     {value.title}
                   </h3>
                   <p className="text-muted-foreground text-sm">{value.description}</p>
-                </div>
+                </article>
               ))}
             </div>
-          </div>
+          </section>
         </div>
 
-        <div className="mt-16">
+        <section className="mt-16">
           <h2 className="text-2xl font-bold text-foreground mb-8">Portfolio of Solutions</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {solution.relatedProducts.map((product, index) => (
-              <Link
-                key={index}
-                href={product.path}
-                className="bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-all group"
-              >
-                <div className="aspect-[4/3] bg-muted overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-foreground font-semibold mb-2">{product.name}</h3>
-                  <p className="text-muted-foreground text-sm line-clamp-3">{product.description}</p>
-                </div>
-              </Link>
+              <article key={index}>
+                <Link
+                  href={product.path}
+                  className="bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-all group block"
+                >
+                  <figure className="aspect-[4/3] bg-muted overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </figure>
+                  <div className="p-4">
+                    <h3 className="text-foreground font-semibold mb-2">{product.name}</h3>
+                    <p className="text-muted-foreground text-sm line-clamp-3">{product.description}</p>
+                  </div>
+                </Link>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="mt-16 text-center bg-card rounded-lg p-10 border border-border">
+        <aside className="mt-16 text-center bg-card rounded-lg p-10 border border-border">
           <h2 className="text-2xl font-semibold text-foreground mb-4">Ready to Transform Your Operations?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Contact our team to discuss how our drone solutions can address your specific industry challenges.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
-          >
-            Get in Touch
-          </Link>
-        </div>
+          <nav>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3 rounded font-medium hover:opacity-90 transition-opacity"
+            >
+              Get in Touch
+            </Link>
+          </nav>
+        </aside>
       </div>
     </div>
   );
