@@ -389,14 +389,33 @@ export default function ProductsPage() {
   return (
     <div className="bg-background min-h-screen font-sans pt-16">
       <StructuredData data={productsSchema} />
-      <header className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 text-center">
-          <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Industry Solutions
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive drone solutions for various industries including agriculture, industrial multi-mission, logistics, and security applications.
-          </p>
+      <nav className="border-b border-border bg-card" aria-label="Breadcrumb">
+        <div className="mx-auto max-w-7xl px-5 py-3 lg:px-8">
+          <ol className="flex items-center gap-2 text-muted-foreground text-sm">
+            <li>
+              <Link href="/" className="hover:text-accent transition-colors">Home</Link>
+            </li>
+            <li>&gt;</li>
+            <li className="text-foreground/80">Products</li>
+          </ol>
+        </div>
+      </nav>
+
+      <header className="relative border-b border-border h-192">
+        <img
+          src="/images/products-page.jpg"
+          alt="Industry Products"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 flex items-start justify-center pt-12">
+          <div className="text-center px-5">
+            <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Industry Products
+            </h1>
+            <p className="font-bold text-foreground  max-w-2xl mx-auto">
+               Comprehensive drone products for various industries scenarios including agriculture, industrial multi-mission, logistics, and security applications.
+            </p>
+          </div>
         </div>
       </header>
 

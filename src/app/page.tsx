@@ -172,9 +172,10 @@ export default function HomePage() {
                 <img
                   src={c.image}
                   alt={c.title}
-                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-background/80 p-7 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-7">
                   <span className="font-mono text-xs text-accent">0{i + 1}</span>
                   <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
@@ -192,9 +193,10 @@ export default function HomePage() {
                 <img
                   src={c.image}
                   alt={c.title}
-                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-background/80 p-7 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-7">
                   <span className="font-mono text-xs text-accent">0{i + 3}</span>
                   <h3 className="mt-4 text-lg font-medium text-foreground">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
