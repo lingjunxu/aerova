@@ -202,48 +202,7 @@ const CLEANING_DRONES = [
       { label: "Water Pressure", value: "0-250Bar" },
       { label: "Flow Rate", value: "15-20 L/min" }
     ]
-  }
-];
-
-const CARGO_DRONES = [
-  {
-    id: "c300",
-    name: "Likiu-C300",
-    description: "The Likiu-C300 is a four-axis, eight-propeller heavy-duty transport drone, centered around specialized cargo bays, airdrop devices, and other mounting systems. With a maximum payload of 170kg and a maximum takeoff weight of 300kg.",
-    image: "/images/c300.jpg",
-    specs: [
-      { label: "Max Payload", value: "170kg" },
-      { label: "Max Takeoff Weight", value: "300kg" },
-      { label: "Positioning System", value: "GPS + Dual-band RTK" },
-      { label: "Positioning Accuracy", value: "0.5-20cm" },
-      { label: "Bare Weight", value: "90kg" },
-      { label: "Flight Range", value: "5km" },
-      { label: "Flight Altitude", value: "1km" },
-      { label: "Endurance (150kg Load)", value: "15min" }
-    ]
-  }
-];
-
-const TACTICAL_DRONES = [
-  {
-    id: "spear3t-tactical",
-    name: "Likiu Spear 3T",
-    description: "Likiu Spear 3T is a miniature reconnaissance and strike integrated drone engineered for efficient execution of complex missions. It ingeniously integrates a flagship triple-spectrum vision perception system and robust AI computing power into a compact airframe weighing merely about 930 grams.",
-    image: "/images/3ta.jpg",
-    specs: [
-      { label: "Weight", value: "930g" },
-      { label: "Vision System", value: "Triple-Spectrum" },
-      { label: "AI Computing", value: "Built-in" },
-      { label: "Daytime Recon", value: "HD Quality" },
-      { label: "Night Search", value: "Covert Mode" },
-      { label: "Target Lock", value: "High-Dynamic" },
-      { label: "Maneuverability", value: "Excellent" },
-      { label: "Environmental Adaptability", value: "All-Weather" }
-    ]
-  }
-];
-
-const RECON_DRONES = [
+  },
   {
     id: "d900",
     name: "D-Series Quadcopter (900mm)",
@@ -342,7 +301,45 @@ const RECON_DRONES = [
   }
 ];
 
-type CategoryType = "all" | "inspection" | "agricultural" | "cleaning" | "cargo" | "tactical" | "recon";
+const CARGO_DRONES = [
+  {
+    id: "c300",
+    name: "Likiu-C300",
+    description: "The Likiu-C300 is a four-axis, eight-propeller heavy-duty transport drone, centered around specialized cargo bays, airdrop devices, and other mounting systems. With a maximum payload of 170kg and a maximum takeoff weight of 300kg.",
+    image: "/images/c300.jpg",
+    specs: [
+      { label: "Max Payload", value: "170kg" },
+      { label: "Max Takeoff Weight", value: "300kg" },
+      { label: "Positioning System", value: "GPS + Dual-band RTK" },
+      { label: "Positioning Accuracy", value: "0.5-20cm" },
+      { label: "Bare Weight", value: "90kg" },
+      { label: "Flight Range", value: "5km" },
+      { label: "Flight Altitude", value: "1km" },
+      { label: "Endurance (150kg Load)", value: "15min" }
+    ]
+  }
+];
+
+const TACTICAL_DRONES = [
+  {
+    id: "spear3t-tactical",
+    name: "Likiu Spear 3T",
+    description: "Likiu Spear 3T is a miniature reconnaissance and strike integrated drone engineered for efficient execution of complex missions. It ingeniously integrates a flagship triple-spectrum vision perception system and robust AI computing power into a compact airframe weighing merely about 930 grams.",
+    image: "/images/3ta.jpg",
+    specs: [
+      { label: "Weight", value: "930g" },
+      { label: "Vision System", value: "Triple-Spectrum" },
+      { label: "AI Computing", value: "Built-in" },
+      { label: "Daytime Recon", value: "HD Quality" },
+      { label: "Night Search", value: "Covert Mode" },
+      { label: "Target Lock", value: "High-Dynamic" },
+      { label: "Maneuverability", value: "Excellent" },
+      { label: "Environmental Adaptability", value: "All-Weather" }
+    ]
+  }
+];
+
+type CategoryType = "all" | "inspection" | "agricultural" | "cleaning" | "cargo" | "tactical";
 
 const CATEGORIES: { id: CategoryType; name: string }[] = [
   { id: "all", name: "All Products" },
@@ -350,8 +347,7 @@ const CATEGORIES: { id: CategoryType; name: string }[] = [
   { id: "agricultural", name: "Agricultural" },
   { id: "cleaning", name: "Industrial Multi-mission" },
   { id: "cargo", name: "Logistics" },
-  { id: "tactical", name: "Tactical" },
-  { id: "recon", name: "Reconnaissance" }
+  { id: "tactical", name: "Tactical" }
 ];
 
 export default function ProductsPage() {
@@ -370,16 +366,14 @@ export default function ProductsPage() {
         return CARGO_DRONES;
       case "tactical":
         return TACTICAL_DRONES;
-      case "recon":
-        return RECON_DRONES;
       default:
-        return [...INSPECTION_DRONES, ...AGRICULTURAL_DRONES, ...CLEANING_DRONES, ...CARGO_DRONES, ...TACTICAL_DRONES, ...RECON_DRONES];
+        return [...INSPECTION_DRONES, ...AGRICULTURAL_DRONES, ...CLEANING_DRONES, ...CARGO_DRONES, ...TACTICAL_DRONES];
     }
   };
 
   const products = getProducts();
 
-  const allProducts = [...INSPECTION_DRONES, ...AGRICULTURAL_DRONES, ...CLEANING_DRONES, ...CARGO_DRONES, ...TACTICAL_DRONES, ...RECON_DRONES];
+  const allProducts = [...INSPECTION_DRONES, ...AGRICULTURAL_DRONES, ...CLEANING_DRONES, ...CARGO_DRONES, ...TACTICAL_DRONES];
   const productsSchema = createItemListSchema(
     "AEROVA Industrial Drone Products",
     allProducts.map((p) => ({ url: `/products/${p.id}`, name: p.name })),
